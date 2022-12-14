@@ -10,11 +10,11 @@ RUN chmod a+x /app/hb-store-cdn-cli-server-linux
 
 ARG host=localhost
 ARG port=8888
-ARG base=/media/download/PS4
+ARG base=/repo
 
 RUN echo "host="$host >> /app/config.ini
 RUN echo "port="$port >> /app/config.ini
-RUN echo "basePath=/Downloads" >> /app/config.ini
+RUN echo "basePath=/repo" >> /app/config.ini
 RUN echo "binVersion=4.31" >> /app/config.ini
 
 CMD /app/hb-store-cdn-cli-server-linux start
