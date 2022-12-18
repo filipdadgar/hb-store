@@ -1,0 +1,79 @@
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  namespace: hb-store
+  name: hb-store-deployment
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: hb-store
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: hb-store
+    spec:
+      containers:
+      - name: hb-store
+        image: filipdadgar/hb-store
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        env:
+          - name: host
+            value: "localhost"
+          - name: port
+            value: "8888"
+          - name: base
+            value: "/repo"        
+        ports:
+        - containerPort: 8888
+        volumeMounts:
+        - mountPath: /repo
+          name: hb-store-repo
+      volumes:
+        - name: hb-store-repo
+          hostPath:
+            path: /media/download/PS4
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      dnsConfig:
+        nameservers:
+          - 192.168.2.2
+          - 10.96.0.10
+        searches:
+          - domain.com #masked
+          - default.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+        options:
+          - name: ndots
+            value: "2"                  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hb-store
+  namespace: hb-store
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: ps4repo.domain.com #masked
+  labels:
+    app: hb-store
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - name: http
+    port: 8888
+    protocol: TCP
+    targetPort: 8888    
+  selector:
+    app: hb-store
+  type: LoadBalancer
