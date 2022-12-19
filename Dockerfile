@@ -11,7 +11,7 @@ ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/homebrew.e
 ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/remote.md5 /app/bin/remote.md5
 RUN chmod a+x /app/hb-store-cdn-cli-server-linux
 
-ARG host=localhost
+ARG host=ps4repo.domain.com
 ARG port=8888
 ARG base=/repo
 
