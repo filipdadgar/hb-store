@@ -5,8 +5,7 @@ Packaged the great work of https://github.com/Gkiokan/hb-store-cdn-cli-server in
 To run as docker container run:
 docker run -d -p 8888:8888 -e host=localhost -e port=8888 filipdadgar/hb-store
 
-host=<should be something that is not localhost!>
-port=<should be the port you want to connect to>
+host=[should be something that is not localhost!]
 
 To run as k8 deployment:
 
