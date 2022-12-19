@@ -10,5 +10,7 @@ host=[should be something that is not localhost!]
 To run as k8 deployment:
 
 > kubectl create ns hb-store
+> 
 > kubectl apply -f https://raw.githubusercontent.com/filipdadgar/hb-store/main/hb-store.yaml
+> 
 > kubectl get pods -n hb-store #to check status for the POD
