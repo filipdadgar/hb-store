@@ -25,4 +25,4 @@ RUN echo "port="$port >> /app/config.ini
 RUN echo "basePath=/repo" >> /app/config.ini
 RUN echo "binVersion=4.31" >> /app/config.ini
 
-CMD /app/hb-store-cdn-cli-server-linux start
+CMD /app/hb-store-cdn-cli-server-linux check-bin && /app/hb-store-cdn-cli-server-linux start
