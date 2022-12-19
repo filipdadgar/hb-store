@@ -23,6 +23,6 @@ ARG base=/repo
 RUN echo "host="$host >> /app/config.ini
 RUN echo "port="$port >> /app/config.ini
 RUN echo "basePath=/repo" >> /app/config.ini
-RUN echo "binVersion=4.31" >> /app/config.ini
+RUN echo "binVersion=0.00" >> /app/config.ini
 
 CMD /app/hb-store-cdn-cli-server-linux check-bin && /app/hb-store-cdn-cli-server-linux start
