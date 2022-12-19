@@ -6,10 +6,15 @@ RUN apt-get update && \
     apt-get clean
 
 ADD https://github.com/Gkiokan/hb-store-cdn-cli-server/releases/download/v1.3.0/hb-store-cdn-cli-server-linux /app/hb-store-cdn-cli-server-linux
-ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/homebrew.elf /app/bin/homebrew.elf
-ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/homebrew.elf.sig /app/bin/homebrew.elf.sig
-ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/remote.md5 /app/bin/remote.md5
 RUN chmod a+x /app/hb-store-cdn-cli-server-linux
+
+# Not needed anymore since latest release of cli-server
+# keeping it here in case of debugging.
+#
+#ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/homebrew.elf /app/bin/homebrew.elf
+#ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/homebrew.elf.sig /app/bin/homebrew.elf.sig
+#ADD https://github.com/LightningMods/PS4-Store/releases/download/4.31/remote.md5 /app/bin/remote.md5
+#
 
 ARG host=ps4repo.domain.com
 ARG port=8888
