@@ -1,5 +1,4 @@
 os: linux
-dist: trusty
 language: generic
 
 services:
@@ -7,6 +6,6 @@ services:
 
 after_success:
   - docker build -t "filipdadgar/hb-store" .
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push "filipdadgar/hb-store"
   - echo "done pushing!"
