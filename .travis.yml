@@ -3,6 +3,7 @@ language: generic
 
 services:
   - docker
+  - echo "$DOCKER_USERNAME"
 
 after_success:
   - docker build -t "filipdadgar/hb-store" .
