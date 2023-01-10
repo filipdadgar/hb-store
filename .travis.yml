@@ -1,7 +1,9 @@
+dist: trusty
+
 services:
   - docker
 
-before_install:
-  - docker build -t filipdadgar/hb-store .
-  - docker run -d -p 8888:8888 -e host=localhost -e port=8888 filipdadgar/hb-store /bin/sh -c "/app/hb-store-cdn-cli-server-linux start"
-  - docker ps -a
+after_success:
+  - docker build -t "filipdadgar/hb-store" .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push "filipdadgar/hb-store"
