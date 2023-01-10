@@ -1,11 +1,12 @@
+os: linux
 dist: trusty
 language: generic
 
 services:
   - docker
-  - echo "$DOCKER_USERNAME"
 
 after_success:
   - docker build -t "filipdadgar/hb-store" .
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker push "filipdadgar/hb-store"
+  - echo "done pushing!"
