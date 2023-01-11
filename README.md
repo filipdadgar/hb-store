@@ -1,4 +1,5 @@
 # hb-store
+[![Build Status](https://app.travis-ci.com/filipdadgar/hb-store.svg?branch=main)](https://app.travis-ci.com/filipdadgar/hb-store)
 
 Packaged the great work of https://github.com/Gkiokan/hb-store-cdn-cli-server in Docker.
 
